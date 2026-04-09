@@ -369,6 +369,8 @@
             // 依照名稱排序
             let sortedVoices = englishVoices.sort((a, b) => a.name.localeCompare(b.name));
 
+            let hasSamanthaOrZira = englishVoices.some(v => v.name.includes('Samantha') || v.name.includes('Zira'));
+
             sortedVoices.forEach((voice) => {
                 let option = document.createElement('option');
                 let voiceName = voice.name;
@@ -384,8 +386,17 @@
                 option.setAttribute('data-name', voice.name);
                 voiceSelect.appendChild(option);
                 
-                // 預設選擇支援高亮的英文語音
-                if(!defaultSet && voice.localService && voice.lang.toLowerCase().startsWith('en')) {
+                let isSamantha = voice.name.includes('Samantha');
+                let isZira = voice.name.includes('Zira');
+                
+                // 預設選擇邏輯：
+                // 如果清單中有 Samantha 或 Zira，就只選她們
+                if (!defaultSet && (isSamantha || isZira)) {
+                    option.selected = true;
+                    defaultSet = true;
+                } 
+                // 如果清單裡根本沒有她們，才退而求其次選第一個本機語音
+                else if (!defaultSet && !hasSamanthaOrZira && voice.localService && voice.lang.toLowerCase().includes('en-us')) {
                     option.selected = true;
                     defaultSet = true;
                 }
