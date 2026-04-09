@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jim's Interview Practice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --danger: #ef4444;
+            --danger-hover: #dc2626;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --highlight: #fef08a;
+            --hover-bg: #e0f2fe;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            margin-top: 10px;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin-bottom: 30px;
+            position: sticky;
+            top: 15px;
+            z-index: 10;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group:last-of-type {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #fff;
+            color: var(--text-main);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234b5563' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+            cursor: pointer;
+        }
+        select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        .rate-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .rate-btn {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .rate-btn:hover {
+            background-color: var(--bg-color);
+            border-color: #d1d5db;
+        }
+        .rate-btn:active {
+            transform: scale(0.95);
+        }
+
+        input[type="range"] {
+            flex-grow: 1;
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 4px;
+            outline: none;
+            appearance: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 25px;
+            margin-top: 5px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        .radio-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+            margin: 0;
+        }
+        .radio-option label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            user-select: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+        }
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+        }
+        .btn-danger:hover {
+            background-color: var(--danger-hover);
+            box-shadow: 0 4px 6px rgba(239, 68, 68, 0.4);
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: none;
+        }
+
+        #content {
+            background: var(--card-bg);
+            padding: 30px 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--text-main);
+        }
+
+        .word {
+            cursor: pointer;
+            display: inline-block;
+            padding: 0 2px;
+            margin: 0 1px;
+            border-radius: 4px;
+            transition: background-color 0.15s;
+        }
+        .word:hover {
+            background-color: var(--hover-bg);
+        }
+        
+        .sentence {
+            display: inline;
+            border-bottom: 2px dotted #d1d5db;
+            transition: border-color 0.2s, background-color 0.2s;
+            padding-bottom: 2px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .sentence:hover {
+            border-bottom-color: var(--primary);
+        }
+        
+        .highlight {
+            background-color: var(--highlight) !important;
+            color: #000;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 640px) {
+            .container {
+                padding: 15px;
+            }
+            .card {
+                padding: 15px;
+                top: 10px;
+                margin-bottom: 20px;
+            }
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .btn {
+                width: 100%;
+                padding: 14px;
+            }
+            #content {
+                padding: 20px;
+                font-size: 1.05rem;
+            }
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h2>面試英文語音練習</h2>
+        </header>
+
+        <div class="card controls">
+            <div class="form-group">
+                <label for="voiceSelect">🗣️ 1. 選擇語音 (優先尋找美式英文)</label>
+                <select id="voiceSelect"></select>
+            </div>
+
+            <div class="form-group">
+                <label for="rateSelect">⏱️ 2. 語速 (當前: <span id="rateValue">1.0</span>)</label>
+                <div class="rate-control">
+                    <button class="rate-btn" onclick="adjustRate(-0.1)">-</button>
+                    <input type="range" id="rateSelect" min="0" max="1.5" step="0.1" value="1.0">
+                    <button class="rate-btn" onclick="adjustRate(0.1)">+</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>🖱️ 3. 點擊文字時要朗讀：</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" name="clickMode" value="sentence" checked id="modeSentence">
+                        <label for="modeSentence">整句朗讀</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" name="clickMode" value="word" id="modeWord">
+                        <label for="modeWord">單字朗讀</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="readFull()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    朗讀全文
+                </button>
+                <button class="btn btn-danger" onclick="stopReading()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
+                    停止朗讀
+                </button>
+            </div>
+        </div>
+
+        <div id="content" class="card"></div>
+    </div>
+
+    <script>
+        // 預載的英文講稿
+        const scriptText = `Hello everyone, my name is Jim Lee. I currently focus on automation development and AI integration. I have over 10 years of experience in software development and team leadership. Right now, I work at Compal Electronics as a Software Design Supervisor. My main responsibilities include evaluating project requirements, allocating resources, and managing schedules. I am a full-stack developer. My primary programming languages are Python and C/C++, and I also use front-end technologies like Vue.js and Flask. Recently, I have successfully integrated Azure AI into our real-world projects. I also have strong experience in automated testing and system integration. Regarding my education, I hold a Master's degree in Communications Engineering from Yuan Ze University, and a Bachelor's degree from Minghsin University of Science and Technology. For my Master's thesis, I developed a system to remotely control a robotic arm and a smart vehicle using a Kinect camera. We used image processing to detect human hand gestures to control the machine. The goal was to improve safety for maintenance work in dangerous environments. As for my career history, I have been working at Compal Electronics since 2016. Before that, I was a Senior Software Engineer in Test at Trend Micro, where I tested malware detection modules. My first job was at Provideo Tech, focusing on firmware development, system integration, and automated testing. Next, I would like to briefly share five key projects I led at Compal. First, Thermal Auto-Measurement System. Traditional burn-in tests required manual operation and took a lot of time. I developed a web tool and used PyVISA to control the testing instruments automatically. The system sends the real-time data to a MySQL database, achieving a fully automated testing process. Second, PDF Parsing and Automation. To handle a large amount of PDF documents, I introduced Azure Document Intelligence to extract key data. I combined it with Selenium to automatically upload the data to our client's system. This greatly reduced human effort and improved data accuracy. Third, Power PL4 Auto-Measurement. For battery charging and discharging tests, I developed a system to control all the equipment automatically, including switching between AC and DC. It automatically tracks the voltage and generates test reports, saving a lot of time. Fourth, PM ProtoPlan Automation. Manual project planning was very time-consuming. I built a centralized web platform to sync data between the PCBA and ASSY departments. This system automatically generates schedules and SKUs. It achieved 80% automation and reduced working hours by more than 50%. Fifth, Motherboard Screw Detection Research. We researched if the AI model YOLO could replace traditional AOI machines for screw detection. I trained a YOLO model to find the target features. However, the accuracy within a 5-pixel range was only about 89.59%. Therefore, we concluded that YOLO cannot replace traditional AOI for this specific task yet. This concludes my self-introduction. Thank you for your time, and I am happy to answer any questions you might have.`;
+
+        let synth = window.speechSynthesis;
+        let voiceSelect = document.getElementById('voiceSelect');
+        let rateSelect = document.getElementById('rateSelect');
+        let rateValue = document.getElementById('rateValue');
+        let contentDiv = document.getElementById('content');
+        let voices = [];
+
+        // 載入系統語音
+        function populateVoiceList() {
+            voices = synth.getVoices();
+            voiceSelect.innerHTML = '';
+            let defaultSet = false;
+            
+            // 將英文語音排在前面
+            let sortedVoices = [...voices].sort((a, b) => {
+                let aIsEn = a.lang.toLowerCase().startsWith('en');
+                let bIsEn = b.lang.toLowerCase().startsWith('en');
+                if (aIsEn && !bIsEn) return -1;
+                if (!aIsEn && bIsEn) return 1;
+                return 0;
+            });
+
+            sortedVoices.forEach((voice) => {
+                let option = document.createElement('option');
+                let voiceName = voice.name;
+                
+                // 標記是否為本機語音 (本機語音通常才支援單字同步高亮)
+                if (voice.localService) {
+                    voiceName += ' ✔️支援高亮';
+                } else {
+                    voiceName += ' ❌不支援高亮';
+                }
+
+                option.textContent = voiceName + ' [' + voice.lang + ']';
+                option.setAttribute('data-name', voice.name);
+                voiceSelect.appendChild(option);
+                
+                // 預設選擇支援高亮的英文語音
+                if(!defaultSet && voice.localService && voice.lang.toLowerCase().startsWith('en')) {
+                    option.selected = true;
+                    defaultSet = true;
+                }
+            });
+            
+            // 如果沒有，退而求其次選第一個支援高亮的
+            if(!defaultSet) {
+                for(let i=0; i<voiceSelect.options.length; i++) {
+                    if(voiceSelect.options[i].textContent.includes('✔️支援高亮')) {
+                        voiceSelect.options[i].selected = true;
+                        defaultSet = true;
+                        break;
+                    }
+                }
+            }
+            
+            // 如果都沒有，就選清單中的第一個
+            if(!defaultSet && voiceSelect.options.length > 0) {
+                voiceSelect.options[0].selected = true;
+            }
+        }
+
+        populateVoiceList();
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = populateVoiceList;
+        }
+
+        // 更新語速顯示
+        rateSelect.addEventListener('input', () => {
+            rateValue.textContent = parseFloat(rateSelect.value).toFixed(1);
+        });
+
+        function adjustRate(delta) {
+            let newVal = parseFloat(rateSelect.value) + delta;
+            newVal = Math.max(parseFloat(rateSelect.min), Math.min(parseFloat(rateSelect.max), newVal));
+            rateSelect.value = newVal.toFixed(1);
+            rateValue.textContent = rateSelect.value;
+        }
+
+        let wordSpans = [];
+        let fullTextForSpeech = "";
+
+        // 朗讀功能
+        function speak(text, mapping) {
+            synth.cancel(); // 念新句子前先中斷上一個
+            document.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
+            
+            let utterThis = new SpeechSynthesisUtterance(text);
+            
+            if(voiceSelect.selectedOptions.length > 0) {
+                let selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+                for(let i = 0; i < voices.length ; i++) {
+                    if(voices[i].name === selectedOption) {
+                        utterThis.voice = voices[i];
+                        break;
+                    }
+                }
+            }
+            
+            utterThis.rate = parseFloat(rateSelect.value);
+            
+            utterThis.onboundary = (event) => {
+                if (event.name === 'word') {
+                    let charIndex = event.charIndex;
+                    document.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
+                    
+                    // 尋找當前 charIndex 落在哪個單字的範圍內
+                    let target = mapping.find(m => charIndex >= m.start && charIndex < m.end);
+                    
+                    // 如果找不到完全匹配的，找最接近且在 charIndex 之後的單字
+                    if (!target) {
+                        target = mapping.find(m => m.start >= charIndex);
+                    }
+                    
+                    if (target) {
+                        target.span.classList.add('highlight');
+                    }
+                }
+            };
+
+            utterThis.onend = () => {
+                document.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
+            };
+
+            utterThis.onerror = () => {
+                document.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
+            };
+
+            synth.speak(utterThis);
+        }
+
+        function readFull() {
+            let mapping = wordSpans.map(s => ({
+                start: parseInt(s.dataset.globalStart),
+                end: parseInt(s.dataset.globalEnd),
+                span: s
+            }));
+            speak(fullTextForSpeech, mapping);
+        }
+
+        function stopReading() {
+            synth.cancel();
+            document.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
+        }
+
+        // 解析文字並轉為可點擊的元素
+        function renderText() {
+            contentDiv.innerHTML = '';
+            wordSpans = [];
+            fullTextForSpeech = "";
+            
+            // 用正規表達式將文章切分成句子
+            let sentences = scriptText.match(/[^.?!]+[.?!]+/g) || [scriptText];
+            
+            sentences.forEach(sentenceText => {
+                let sentenceSpan = document.createElement('span');
+                sentenceSpan.className = 'sentence';
+                
+                // 將句子切分成單字
+                let words = sentenceText.trim().split(/\s+/);
+                let sentenceSpans = [];
+                let sentenceTextForSpeech = "";
+                
+                words.forEach((wordText, index) => {
+                    let wordSpan = document.createElement('span');
+                    wordSpan.className = 'word';
+                    let textWithSpace = wordText + (index < words.length - 1 ? ' ' : '');
+                    wordSpan.textContent = textWithSpace;
+                    
+                    let wordStartIndex = fullTextForSpeech.length;
+                    fullTextForSpeech += textWithSpace;
+                    
+                    let sentenceWordStartIndex = sentenceTextForSpeech.length;
+                    sentenceTextForSpeech += textWithSpace;
+                    
+                    wordSpan.dataset.globalStart = wordStartIndex;
+                    wordSpan.dataset.globalEnd = fullTextForSpeech.length;
+                    
+                    wordSpan.dataset.sentenceStart = sentenceWordStartIndex;
+                    wordSpan.dataset.sentenceEnd = sentenceTextForSpeech.length;
+                    
+                    wordSpans.push(wordSpan);
+                    sentenceSpans.push(wordSpan);
+                    
+                    // 點擊事件
+                    wordSpan.onclick = (e) => {
+                        e.stopPropagation(); // 防止事件冒泡
+                        let mode = document.querySelector('input[name="clickMode"]:checked').value;
+                        
+                        if (mode === 'word') {
+                            let cleanWord = wordText.replace(/[^a-zA-Z0-9]/g, '');
+                            speak(cleanWord, [{ start: 0, end: cleanWord.length, span: wordSpan }]); 
+                        } else {
+                            let mapping = sentenceSpans.map(s => ({
+                                start: parseInt(s.dataset.sentenceStart),
+                                end: parseInt(s.dataset.sentenceEnd),
+                                span: s
+                            }));
+                            speak(sentenceTextForSpeech, mapping);
+                        }
+                    };
+                    sentenceSpan.appendChild(wordSpan);
+                });
+                
+                contentDiv.appendChild(sentenceSpan);
+                
+                // Add space between sentences
+                fullTextForSpeech += ' ';
+                contentDiv.appendChild(document.createTextNode(' '));
+            });
+        }
+
+        renderText();
+    </script>
+</body>
+</html>
