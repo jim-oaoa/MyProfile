@@ -363,14 +363,11 @@
             voiceSelect.innerHTML = '';
             let defaultSet = false;
             
-            // 將英文語音排在前面
-            let sortedVoices = [...voices].sort((a, b) => {
-                let aIsEn = a.lang.toLowerCase().startsWith('en');
-                let bIsEn = b.lang.toLowerCase().startsWith('en');
-                if (aIsEn && !bIsEn) return -1;
-                if (!aIsEn && bIsEn) return 1;
-                return 0;
-            });
+            // 嚴格過濾出只有「美式英文 (en-US)」的語音
+            let englishVoices = voices.filter(voice => voice.lang.toLowerCase().includes('en-us'));
+
+            // 依照名稱排序
+            let sortedVoices = englishVoices.sort((a, b) => a.name.localeCompare(b.name));
 
             sortedVoices.forEach((voice) => {
                 let option = document.createElement('option');
