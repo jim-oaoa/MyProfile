@@ -557,8 +557,8 @@
             wordSpans = [];
             fullTextForSpeech = "";
             
-            // 用正規表達式將文章切分成句子
-            let sentences = scriptText.match(/[^.?!]+[.?!]+/g) || [scriptText];
+            // 用正規表達式將文章切分成句子，避免小數點或縮寫（如 Vue.js, 89.59%）被錯誤切斷
+            let sentences = scriptText.match(/[\s\S]*?[.?!]+(?=\s|$)/g) || [scriptText];
             
             sentences.forEach(sentenceText => {
                 let sentenceSpan = document.createElement('span');
