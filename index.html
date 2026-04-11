@@ -348,7 +348,56 @@
 
     <script>
         // 預載的英文講稿
-        const scriptText = `Hello everyone, my name is Jim Lee. I currently focus on automation development and AI integration. I have over 10 years of experience in software development and team leadership. Right now, I work at Compal Electronics as a Software Design Supervisor. My main responsibilities include evaluating project requirements, allocating resources, and managing schedules. I am a full-stack developer. My primary programming languages are Python and C/C++, and I also use front-end technologies like Vue.js and Flask. Recently, I have successfully integrated Azure AI into our real-world projects. I also have strong experience in automated testing and system integration. Regarding my education, I hold a Master's degree in Communications Engineering from Yuan Ze University, and a Bachelor's degree from Minghsin University of Science and Technology. For my Master's thesis, I developed a system to remotely control a robotic arm and a smart vehicle using a Kinect camera. We used image processing to detect human hand gestures to control the machine. The goal was to improve safety for maintenance work in dangerous environments. As for my career history, I have been working at Compal Electronics since 2016. Before that, I was a Senior Software Engineer in Test at Trend Micro, where I tested malware detection modules. My first job was at Provideo Tech, focusing on firmware development, system integration, and automated testing. Next, I would like to briefly share five key projects I led at Compal. First, Thermal Auto-Measurement System. Traditional burn-in tests required manual operation and took a lot of time. I developed a web tool and used PyVISA to control the testing instruments automatically. The system sends the real-time data to a MySQL database, achieving a fully automated testing process. Second, PDF Parsing and Automation. To handle a large amount of PDF documents, I introduced Azure Document Intelligence to extract key data. I combined it with Selenium to automatically upload the data to our client's system. This greatly reduced human effort and improved data accuracy. Third, Power PL4 Auto-Measurement. For battery charging and discharging tests, I developed a system to control all the equipment automatically, including switching between AC and DC. It automatically tracks the voltage and generates test reports, saving a lot of time. Fourth, PM ProtoPlan Automation. Manual project planning was very time-consuming. I built a centralized web platform to sync data between the PCBA and ASSY departments. This system automatically generates schedules and SKUs. It achieved 80% automation and reduced working hours by more than 50%. Fifth, Motherboard Screw Detection Research. We researched if the AI model YOLO could replace traditional AOI machines for screw detection. I trained a YOLO model to find the target features. However, the accuracy within a 5-pixel range was only about 89.59%. Therefore, we concluded that YOLO cannot replace traditional AOI for this specific task yet. This concludes my self-introduction. Thank you for your time, and I am happy to answer any questions you might have.`;
+        const scriptText = `Hello everyone, my name is Jim Lee.
+            I currently focus on automation development and AI integration.
+            I have over 10 years of experience in software development and team leadership.
+            Right now, I work at Compal Electronics as a Software Design Supervisor.
+            My main responsibilities include evaluating project requirements, allocating resources, and managing schedules.
+            I am a full-stack developer.
+            My primary programming languages are Python and C/C++, and I also use front-end technologies like Vue.js and Flask.
+            Recently, I have successfully integrated Azure AI into our real-world projects.
+            I also have strong experience in automated testing and system integration.
+
+            Regarding my education, I hold a Master's degree in Communications Engineering from Yuan Ze University, and a Bachelor's degree from Minghsin University of Science and Technology.
+            For my Master's thesis, I developed a system to remotely control a robotic arm and a smart vehicle using a Kinect camera.
+            We used image processing to detect human hand gestures to control the machine.
+            The goal was to improve safety for maintenance work in dangerous environments.
+
+            As for my career history, I have been working at Compal Electronics since 2016.
+            Before that, I was a Senior Software Engineer in Test at Trend Micro, where I tested malware detection modules.
+            My first job was at Provideo Tech, focusing on firmware development, system integration, and automated testing.
+
+            Next, I would like to briefly share five key projects I led at Compal.
+
+            First, Thermal Auto-Measurement System.
+            Traditional burn-in tests required manual operation and took a lot of time.
+            I developed a web tool and used PyVISA to control the testing instruments automatically.
+            The system sends the real-time data to a MySQL database, achieving a fully automated testing process.
+
+            Second, PDF Parsing and Automation.
+            To handle a large amount of PDF documents, I introduced Azure Document Intelligence to extract key data.
+            I combined it with Selenium to automatically upload the data to our client's system.
+            This greatly reduced human effort and improved data accuracy.
+
+            Third, Power PL4 Auto-Measurement.
+            For battery charging and discharging tests, I developed a system to control all the equipment automatically, including switching between AC and DC.
+            It automatically tracks the voltage and generates test reports, saving a lot of time.
+
+            Fourth, PM ProtoPlan Automation.
+            Manual project planning was very time-consuming.
+            I built a centralized web platform to sync data between the PCBA and ASSY departments.
+            This system automatically generates schedules and SKUs.
+            It achieved 80% automation and reduced working hours by more than 50%.
+
+            Fifth, Motherboard Screw Detection Research.
+            We researched if the AI model YOLO could replace traditional AOI machines for screw detection.
+            I trained a YOLO model to find the target features.
+            However, the accuracy within a 5-pixel range was only about 89.59%.
+            Therefore, we concluded that YOLO cannot replace traditional AOI for this specific task yet.
+
+            This concludes my self-introduction.
+            Thank you for your time, and I am happy to answer any questions you might have.`;
+   
 
         let synth = window.speechSynthesis;
         let voiceSelect = document.getElementById('voiceSelect');
